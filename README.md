@@ -18,49 +18,46 @@ Build a RESTful Movie Rating System using **Spring Boot** and **Rest-API** that 
  
 ---
 
-
 ## 📁 Project Structure
 ```
 movie-rating-system-application/
 ├── src/
-│ └── main/
-│ ├── java/
-│ │ └── com/killerexpertise/movies/rating/example/
-│ │ ├── controller/
-│ │ │ ├── MovieController.java
-│ │ │ └── RatingController.java
-│ │ ├── dto/
-│ │ │ └── RatingRequest.java
-│ │ ├── exception/
-│ │ │ ├── GlobalExceptionHandler.java
-│ │ │ └── MovieNotFoundException.java
-│ │ ├── model/
-│ │ │ ├── Movie.java
-│ │ │ └── Rating.java
-│ │ ├── repository/
-│ │ │ ├── MovieRepository.java
-│ │ │ └── RatingRepository.java
-│ │ ├── responce/
-│ │ │ └── ApiResponse.java
-│ │ ├── securityConfig/
-│ │ │ └── SecurityConfig.java
-│ │ ├── service/
-│ │ │ ├── MovieService.java
-│ │ │ ├── RatingService.java
-│ │ │ └── impl/
-│ │ │ ├── MovieServiceImpl.java
-│ │ │ └── RatingServiceImpl.java
-│ │ └── MovieRatingSystemApplication.java
-│ └── resources/
-│ ├── application.properties
-│ └── static/
-├── .gitignore
-├── README.md
-└── pom.xml
+│   └── main/
+│       ├── java/
+│       │   └── com/killerexpertise/movies/rating/example/
+│       │       ├── controller/               # REST controllers for handling HTTP requests
+│       │       │   ├── MovieController.java
+│       │       │   └── RatingController.java
+│       │       ├── dto/                      # Data Transfer Objects for request/response payloads
+│       │       │   └── RatingRequest.java
+│       │       ├── exception/                # Custom exceptions and global exception handling
+│       │       │   ├── GlobalExceptionHandler.java
+│       │       │   └── MovieNotFoundException.java
+│       │       ├── model/                    # JPA entity classes (Movie, Rating)
+│       │       │   ├── Movie.java
+│       │       │   └── Rating.java
+│       │       ├── repository/               # Spring Data JPA repositories for DB access
+│       │       │   ├── MovieRepository.java
+│       │       │   └── RatingRepository.java
+│       │       ├── responce/                 # (Typo: should be 'response/') API response wrapper classes
+│       │       │   └── ApiResponse.java
+│       │       ├── securityConfig/           # Security configuration (e.g., authentication, authorization)
+│       │       │   └── SecurityConfig.java
+│       │       ├── service/                  # Service interfaces defining business logic
+│       │       │   ├── MovieService.java
+│       │       │   ├── RatingService.java
+│       │       │   └── impl/                 # Service implementations
+│       │       │       ├── MovieServiceImpl.java
+│       │       │       └── RatingServiceImpl.java
+│       │       └── MovieRatingSystemApplication.java  # Main Spring Boot application launcher
+│       └── resources/
+│           ├── application.properties        # Application configuration properties (DB, server, etc.)
+│           └── static/                       
+├── .gitignore                               # Git ignore rules
+├── README.md                                # Project overview and instructions
+└── pom.xml                                  # Maven build and dependency management file
+
 ```
-
----
-
 
 ---
 
