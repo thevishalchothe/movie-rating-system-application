@@ -126,3 +126,120 @@ spring.security.user.password=admin
 ```
 mvn spring-boot:run
 ```
+---
+# 🎬 Movie Rating System API - Testing Endpoints & Sample Users
+
+---
+
+## 👤 Sample Users for Authentication
+
+| Username | Password  | Role  |
+|----------|-----------|-------|
+| admin    | adminpass | ADMIN |
+| user     | userpass  | USER  |
+
+---
+
+## 🔐 Authentication
+
+- Use **Basic Auth** with username and password for all secured endpoints.
+- `admin` has role ADMIN and can create movies.
+- `user` has role USER and can rate movies.
+
+---
+
+## 🎬 Movie Rating System API — Testing with Postman
+
+---
+
+## 👤 Sample Users (for Basic Auth)
+
+| Username | Password  | Role  |
+|----------|-----------|-------|
+| admin    | adminpass | ADMIN |
+| user     | userpass  | USER  |
+
+---
+
+
+## How to Test Endpoints in Postman
+
+### 1. Set Authentication (Basic Auth) for Requests That Require It
+
+- Go to **Authorization** tab in Postman
+- Select **Basic Auth**
+- Enter **Username** and **Password** from above table
+
+---
+
+## Endpoints & Postman Setup 🔥 
+
+---
+
+### Get All Movies (Public, No Auth Required)
+
+- Method: **GET**
+- URL: `http://localhost:8080/api/movies`
+
+No authorization needed.
+
+---
+
+### Create Movie (Admin Only)
+
+- Method: **POST**
+- URL: `http://localhost:8080/api/movies`
+- Authorization: **Basic Auth** (admin/adminpass)
+- Headers: `Content-Type: application/json`
+- Body (raw JSON):
+  
+```json
+{
+  "title": "Inception",
+  "description": "A mind-bending thriller",
+  "releaseDate": "2010-07-16"
+}
+```
+
+### Get Movie Details by ID (Public)
+
+  -  Method: GET
+    -  URL: http://localhost:8080/api/movies/{id}
+    -  Replace {id} with movie ID (e.g., 1)
+
+No authorization needed.
+
+### Add or Update Rating (Authenticated User)
+
+-  Method: POST
+  -  URL: http://localhost:8080/api/movies/{movieId}/ratings
+  -  Replace {movieId} with actual movie ID (e.g., 1)
+
+Authorization: Basic Auth (user/userpass)
+  Headers: Content-Type: application/json
+
+Body (raw JSON):
+ ```     
+{
+  "userId": 2,
+  "score": 8
+}
+```
+### Get All Ratings for a Movie (Public)
+
+-  Method: GET
+  -  URL: http://localhost:8080/api/movies/{movieId}/ratings/get-all
+  -  Replace {movieId} with actual movie ID (e.g., 1)
+
+No authorization needed.
+
+---
+
+⚠️ Important Notes:
+Only admins can create movies.
+
+Only authenticated users can rate or update ratings.
+
+Ratings must be between 1 and 10, else you'll get validation errors.
+
+userId in rating request can be your logged-in user ID or any integer if user management is not connected.
