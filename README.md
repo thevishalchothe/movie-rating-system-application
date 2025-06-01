@@ -18,59 +18,16 @@ Build a RESTful Movie Rating System using **Spring Boot** and **Rest-API** that 
  
 ---
 
-## 📁 Project Structure
-```
-movie-rating-system-application/
-├── src/
-│   └── main/
-│       ├── java/
-│       │   └── com/killerexpertise/movies/rating/example/
-│       │       ├── controller/               # REST controllers for handling HTTP requests
-│       │       │   ├── MovieController.java
-│       │       │   └── RatingController.java
-│       │       ├── dto/                      # Data Transfer Objects for request/response payloads
-│       │       │   └── RatingRequest.java
-│       │       ├── exception/                # Custom exceptions and global exception handling
-│       │       │   ├── GlobalExceptionHandler.java
-│       │       │   └── MovieNotFoundException.java
-│       │       ├── model/                    # JPA entity classes (Movie, Rating)
-│       │       │   ├── Movie.java
-│       │       │   └── Rating.java
-│       │       ├── repository/               # Spring Data JPA repositories for DB access
-│       │       │   ├── MovieRepository.java
-│       │       │   └── RatingRepository.java
-│       │       ├── responce/                 # (Typo: should be 'response/') API response wrapper classes
-│       │       │   └── ApiResponse.java
-│       │       ├── securityConfig/           # Security configuration (e.g., authentication, authorization)
-│       │       │   └── SecurityConfig.java
-│       │       ├── service/                  # Service interfaces defining business logic
-│       │       │   ├── MovieService.java
-│       │       │   ├── RatingService.java
-│       │       │   └── impl/                 # Service implementations
-│       │       │       ├── MovieServiceImpl.java
-│       │       │       └── RatingServiceImpl.java
-│       │       └── MovieRatingSystemApplication.java  # Main Spring Boot application launcher
-│       └── resources/
-│           ├── application.properties        # Application configuration properties (DB, server, etc.)
-│           └── static/                       
-├── .gitignore                               # Git ignore rules
-├── README.md                                # Project overview and instructions
-└── pom.xml                                  # Maven build and dependency management file
+## Permissions 🔐 
 
-```
+- Only authenticated users can rate or update ratings
+- Only ADMIN users can create movies
 
 ---
 
-## 🔐 Permissions
+## API Endpoints 🌐 
 
-- ✅ Only authenticated users can rate or update ratings
-- 🛠 Only ADMIN users can create movies
-
----
-
-## 🌐 API Endpoints
-
-### 🎬 Movies
+### Movies 🎬 
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -78,7 +35,7 @@ movie-rating-system-application/
 | `POST` | `/api/movies` | Create a new movie (admin only) |
 | `GET`  | `/api/movies/{id}` | Get movie details with average rating and all ratings |
 
-### ⭐ Ratings
+### Ratings ⭐ 
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -87,7 +44,7 @@ movie-rating-system-application/
 
 ---
 
-## 🧪 Validations
+## Validations 🧪
 
 - Ratings must be between 1 and 10
 - One user can rate a movie only once (update allowed)
@@ -95,19 +52,19 @@ movie-rating-system-application/
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions of Application ⚙️ 
 
-### 1️⃣ Clone the Repo
+### 1. Clone the Repo
 ```bash
 git clone https://github.com/thevishalchothe/movie-rating-system-application.git
 cd movie-rating-system-application
 ```
 
-### 2️⃣ Setup MySQL Database
+### 2. Setup MySQL Database
 ```
 CREATE DATABASE movie_rating_db;
 ```
-### 3️⃣ Configure application.properties
+### 3. Configure application.properties
 
 ```
 # Application name
@@ -119,16 +76,17 @@ spring.application.name=movie-rating-system-application
 spring.security.user.name=admin
 spring.security.user.password=admin
 ```
-### 4️⃣ Run the App
+### 4. Run the App
 ```
 mvn spring-boot:run
 ```
 ---
-# 🎬 Movie Rating System API - Testing Endpoints & Sample Users
+
+## Movie Rating System API - Testing Endpoints & Sample Users 🎬 
 
 ---
 
-## 👤 Sample Users for Authentication
+### 👤 Sample Users for Authentication
 
 | Username | Password  | Role  |
 |----------|-----------|-------|
@@ -137,7 +95,7 @@ mvn spring-boot:run
 
 ---
 
-## 🔐 Authentication
+## Authentication 🔐 
 
 - Use **Basic Auth** with username and password for all secured endpoints.
 - `admin` has role ADMIN and can create movies.
@@ -231,12 +189,24 @@ Body (raw JSON):
 No authorization needed.
 
 ---
+## Logging ⚠️ 
+
+Loggers integrated via SLF4J in both Controllers and Services
+
+Example:
+```
+private static final Logger logger = LoggerFactory.getLogger(MovieController.class);
+
+logger.info("Fetching all movies");
+logger.error("Movie not found with ID: {}", movieId);
+
+```
+
+---
 
 ⚠️ Important Notes:
-Only admins can create movies.
 
-Only authenticated users can rate or update ratings.
-
-Ratings must be between 1 and 10, else you'll get validation errors.
-
-userId in rating request can be your logged-in user ID or any integer if user management is not connected.
+  -  Only admins can create movies.
+  -  Only authenticated users can rate or update ratings.
+  -  Ratings must be between 1 and 10, else you'll get validation errors.
+  -  userId in rating request can be your logged-in user ID or any integer if user management is not connected.
